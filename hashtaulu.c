@@ -8,3 +8,4 @@ struct SanaLista {
   char sana;
   int avain;
 };
+dd
