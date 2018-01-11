@@ -1,1 +1,3 @@
 -prototyypit!!
+-Siirtää sanat hashtauluun
+-
