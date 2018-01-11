@@ -3,14 +3,28 @@
 #include <stdlib.h>
 
 
-
+int sanahaku  (char *teksti) {
+    char * splitti;
+    int i = 0;
+    int len = 0;
+    splitti = strtok (teksti," ,.-_:;!@#$&/""()=?`{[]}+0123456789öäå* ");
+    while (splitti != NULL) {
+        len = strlen(splitti) + 1;
+        for (i = 0; i < len; i++) {
+          splitti[i] = tolower(splitti[i]);
+        }
+        printf ("%s\n",splitti);
+        splitti = strtok (NULL, " ,.-_:;!@#$&/""()=?`{[]}+0123456789öäå* ");
+      }
+      return 0;
+}
 
 int avaa_filu() {
     FILE *filukahva;
     long lSize;
     char *puskuri;
     //avataan filukahva
-    filukahva = fopen ( "TheGun.txt" , "rb" );
+    filukahva = fopen ("small.txt" , "rb");
     if(filukahva == 0){
         perror("TheGun.txt");
         exit(1);
@@ -41,16 +55,6 @@ int avaa_filu() {
 
     free(puskuri);
     return 0;
-}
-
-int sanahaku  (char *teksti) {
-    char * splitti;
-    splitti = strtok (teksti," ,.-_:;!@#$&/""()=?`{[]}+0123456789öäå*");
-    while (splitti != NULL) {
-        printf ("%s\n",splitti);
-        splitti = strtok (NULL, " ,.-_:;!@#$&/""()=?`{[]}+0123456789öäå*");
-      }
-      return 0;
 }
 
 
