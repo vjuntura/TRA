@@ -7,7 +7,7 @@ int sanahaku(char *teksti) {
     char * splitti;
     int i = 0;
     int len = 0;
-    splitti = strtok(teksti," ,.-_:;!@#$&/""()=?`{[]}+0123456789öäå* ");
+    splitti = strtok(teksti," ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
     while(splitti != NULL) {
         len = strlen(splitti) + 1;
         for (i = 0; i < len; i++) {
@@ -15,7 +15,7 @@ int sanahaku(char *teksti) {
         }
         //Tässä välissä tavaraa hashtauluun
         printf("%s\n",splitti);
-        splitti = strtok(NULL, " ,.-_:;!@#$&/""()=?`{[]}+0123456789öäå* ");
+        splitti = strtok(NULL, " ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
       }
       return 0;
 }
