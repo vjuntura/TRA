@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include "bst.h"
 
 
 int sanahaku(char *teksti) {
+    // Empty linked list
+    bst coll;
+    coll.root=0;
+
     char * splitti;
     int i = 0;
     int len = 0;
@@ -13,10 +19,13 @@ int sanahaku(char *teksti) {
         for (i = 0; i < len; i++) {
             splitti[i] = tolower(splitti[i]);
         }
-        //Tässä välissä tavaraa hashtauluun
-        printf("%s\n",splitti);
+        //Tässä välissä tavaraa puuhun
+        bst_insert(&coll, splitti);
+        //printf("%s\n",splitti);
         splitti = strtok(NULL, " ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
       }
+      printf("Original tree:\n");
+      print_tree_inorder(coll);
       return 0;
 }
 
@@ -60,6 +69,8 @@ int avaa_filu() {
 
 
 int main() {
+
+
     avaa_filu();
     return 0;
 }

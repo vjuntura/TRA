@@ -2,7 +2,7 @@
 #define BST_H_INCLUDED
 
 // Defines data to store in tree
-typedef int data_type;
+typedef char data_type;
 
 // Defines node and its pointer
 typedef struct bstnd {
@@ -10,12 +10,12 @@ typedef struct bstnd {
 	struct bstnd* parent;
 	struct bstnd* left;
 	struct bstnd* right;
-} bstnode, *pbstnode; 
+} bstnode, *pbstnode;
 
 // Defines the tree
 typedef struct bt {
 	pbstnode root;
-} bst; 
+} bst;
 
 // Minimum and maximum values
 pbstnode bst_min(pbstnode rt);
