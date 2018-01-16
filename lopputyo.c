@@ -20,8 +20,7 @@ int sanahaku(char *teksti) {
             splitti[i] = tolower(splitti[i]);
         }
         //Tässä välissä tavaraa puuhun
-        bst_insert(&coll, splitti);
-        //printf("%s\n",splitti);
+        printf("%s\n",splitti);
         splitti = strtok(NULL, " ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
       }
       printf("Original tree:\n");

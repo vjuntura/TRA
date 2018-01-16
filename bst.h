@@ -2,11 +2,12 @@
 #define BST_H_INCLUDED
 
 // Defines data to store in tree
-typedef char data_type;
+typedef char* data_type;
 
 // Defines node and its pointer
 typedef struct bstnd {
-	data_type data;
+	char[30] data_1;
+	int maara;
 	struct bstnd* parent;
 	struct bstnd* left;
 	struct bstnd* right;
