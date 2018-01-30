@@ -1,6 +1,7 @@
 #ifndef BST_H_INCLUDED
 #define BST_H_INCLUDED
 
+
 // Defines data to store in tree
 typedef char* data_type;
 

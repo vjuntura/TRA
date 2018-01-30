@@ -5,6 +5,7 @@
 #include "bst.h"
 
 
+
 int sanahaku(char *teksti) {
     // Empty linked list
     bst coll;
