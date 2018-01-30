@@ -1,3 +1,0 @@
--prototyypit!!
--Siirtää sanat hashtauluun
--strcmp
