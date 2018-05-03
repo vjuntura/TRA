@@ -5,26 +5,26 @@
 // Minimum value of the tree
 pbstnode bst_min(pbstnode rt){
 	pbstnode x = rt;
-	
+
 	if(x == 0)
 		return 0;
-	
+
 	while( x->left != 0)
 		x = x->left;
-		
+
 	return x;
 }
 
 // Maximum value of the tree
 pbstnode bst_max(pbstnode rt){
 	pbstnode x = rt;
-	
+
 	if(x == 0)
 		return 0;
-	
+
 	while( x->right != 0)
 		x = x->right;
-		
+
 	return x;
 }
 
@@ -34,7 +34,7 @@ pbstnode bst_max(pbstnode rt){
 */
 pbstnode bst_search(bst bt, data_type key){
 	pbstnode pNode = bt.root;
-	
+
 	while(pNode != 0 && pNode->data != key){
 		if(pNode->data < key){
 			pNode = pNode->right;
@@ -43,14 +43,13 @@ pbstnode bst_search(bst bt, data_type key){
 			pNode = pNode->left;
 		}
 	}
-	
 	return pNode;
 }
 
 // Prints a node
 void print_node(pbstnode n){
 	if(n != 0)
-		printf(" %d ",n->data);
+		printf(" %s %d",n->data, n->maara);
 }
 
 void print_inorder(pbstnode pnode){
@@ -69,10 +68,11 @@ void print_tree_inorder(bst bt){
 /*
 	Allocates a node with data key
 	and inserts it in the tree
-*/ 
-void bst_insert(bst *bt, data_type key){
+*/
+void bst_insert(bst *bt, data_type key, int num){
 	bstnode *n = (bstnode *)malloc(sizeof(bstnode));
 	n->data = key;
+	n->maara = num;
 	n->parent=n->right=n->left=0;
 	pbstnode x = bt->root;
 	pbstnode y=0;
@@ -83,15 +83,15 @@ void bst_insert(bst *bt, data_type key){
 		else if( key > x->data)
 			x = x->right;
 		else
-			return;	
+			return;
 	}
-	
+
 	n->parent = y;
 	if( y == 0)
 		bt->root = n;
 	else if( key < y->data)
 		y->left = n;
-	else 
+	else
 		y->right = n;
 }
 
@@ -99,13 +99,13 @@ void bst_insert(bst *bt, data_type key){
 	Subroutine for removing
 */
 void bst_transplant(bst *bt, pbstnode u, pbstnode v){
-	if( u->parent == 0) 
+	if( u->parent == 0)
 		bt->root = v;
 	else if( u == (u->parent)->left )
 		(u->parent)->left = v;
 	else
  		(u->parent)->right = v;
- 		
+
  	if( v != 0)
  		v->parent = u->parent;
 }
@@ -116,10 +116,10 @@ void bst_transplant(bst *bt, pbstnode u, pbstnode v){
 */
 int bst_remove(bst *bt,data_type key) {
 	pbstnode x = bst_search(*bt,key);
-	
+
 	if(x==0)
 		return 0;
-		
+
 	if(x->left == 0) {
 		bst_transplant(bt, x, x->right);
 	}
@@ -128,20 +128,20 @@ int bst_remove(bst *bt,data_type key) {
 	}
 	else {
 		pbstnode y = bst_min(x->right);
-		
+
 		if( y->parent != x){
 			bst_transplant(bt,y,y->right);
 			y->right = x->right;
 			(y->right)->parent = y;
 		}
-		
+
 		bst_transplant(bt,x,y);
 		y->left = x->left;
 		(y->left)->parent = y;
 	}
-	
+
 	free(x);
-	
+
 	return 1;
 }
 

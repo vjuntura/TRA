@@ -2,32 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <time.h>
 #include "bst.h"
 
 
 
-int sanahaku(char *teksti) {
-    // Empty linked list
-    bst coll;
-    coll.root=0;
 
-    char * splitti;
-    int i = 0;
-    int len = 0;
-    splitti = strtok(teksti," ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
-    while(splitti != NULL) {
-        len = strlen(splitti) + 1;
-        for (i = 0; i < len; i++) {
-            splitti[i] = tolower(splitti[i]);
-        }
-        //Tässä välissä tavaraa puuhun
-        printf("%s\n",splitti);
-        splitti = strtok(NULL, " ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
-      }
-      printf("Original tree:\n");
-      print_tree_inorder(coll);
-      return 0;
-}
 
 int avaa_filu() {
     FILE *filukahva;
@@ -65,6 +45,55 @@ int avaa_filu() {
 
     free(puskuri);
     return 0;
+}
+
+int sanahaku(char *teksti) {
+    // Empty linked list
+    bst coll;
+    coll.root=0;
+
+  //  int maara = 0;
+    char * splitti;
+    int i = 0;
+    int len = 0;
+    splitti = strtok(teksti," ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
+    while(splitti != NULL) {
+        len = strlen(splitti) + 1;
+        for (i = 0; i < len; i++) {
+            splitti[i] = tolower(splitti[i]);
+        }
+
+        //Tässä välissä tavaraa puuhun
+        bst_insert(&coll, splitti, maara);
+        //printf("%s\n",splitti);
+    //    maara = maara + 1;
+        splitti = strtok(NULL, " ,.-_:;!@#$&/""()=?`<>|§½{[]}+0123456789öäå*\n\t\r ");
+      }
+
+      //Tässä sitten puu filuun.
+      printf("Tree:\n");
+      print_tree_inorder(coll);
+      return 0;
+}
+
+
+
+int sanan_maara(char* sana){
+  int maara = 0;
+
+/*
+TÄHÄN TULEE JOTAIN TÄLLAISTA
+if (bst_search(coll, num) == 0) {
+  printf("not found\n");
+}
+else {
+  print_node(bst_search(coll, num));
+}
+
+MUOKKAA HAKUFUNKKARIA SILLEE ETTÄ PALAUTTAA MYÖS SINNE TALLENNETUN INTIN!!
+
+*/
+  return maara;
 }
 
 

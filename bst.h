@@ -7,7 +7,7 @@ typedef char* data_type;
 
 // Defines node and its pointer
 typedef struct bstnd {
-	char[30] data_1;
+	char* data;
 	int maara;
 	struct bstnd* parent;
 	struct bstnd* left;
@@ -27,7 +27,7 @@ pbstnode bst_max(pbstnode rt);
 pbstnode bst_search(bst bt, data_type key);
 
 // Inserts key in the tree
-void bst_insert(bst *bt, data_type key);
+void bst_insert(bst *bt, data_type key, int num);
 
 // Removes key from the tree
 int bst_remove(bst *bt,data_type key);
