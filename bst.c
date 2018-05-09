@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bst.h"
 
 // Minimum value of the tree
@@ -36,7 +37,7 @@ pbstnode bst_search(bst bt, data_type key){
 	pbstnode pNode = bt.root;
 
 	while(pNode != 0 && pNode->data != key){
-		if(pNode->data < key){
+		if(strcmp(key, pNode->data) > 0){
 			pNode = pNode->right;
 		}
 		else {
@@ -49,7 +50,7 @@ pbstnode bst_search(bst bt, data_type key){
 // Prints a node
 void print_node(pbstnode n){
 	if(n != 0)
-		printf(" %s %d",n->data, n->maara);
+		printf(" %s %d\n",n->data, n->maara);
 }
 
 void print_inorder(pbstnode pnode){
@@ -66,33 +67,44 @@ void print_tree_inorder(bst bt){
 }
 
 /*
-	Allocates a node with data key
-	and inserts it in the tree
+jos jo puussa, palauttaa 0, jos ei palauttaa pointterin lisättyyn nodeen.
 */
-void bst_insert(bst *bt, data_type key, int num){
+pbstnode bst_insert(bst *bt, data_type key){
 	bstnode *n = (bstnode *)malloc(sizeof(bstnode));
-	n->data = key;
-	n->maara = num;
+	strcpy(n->data, key);
 	n->parent=n->right=n->left=0;
+	n->maara = 1;
 	pbstnode x = bt->root;
 	pbstnode y=0;
-	while(x!=0){
+	int res;
+	while(x != 0){
 		y=x;
-		if(key < x->data)
+		res = strcmp(key, x->data);
+		if(res < 0){
 			x = x->left;
-		else if( key > x->data)
+		}
+		else if(res > 0){
 			x = x->right;
-		else
-			return;
+		}
+		else if(res == 0){
+		    (x->maara)++;
+			return 0;
+		}
 	}
 
 	n->parent = y;
-	if( y == 0)
+	if(y == 0){
 		bt->root = n;
-	else if( key < y->data)
+		return n;
+	}
+	else if(strcmp(key, y->data) < 0){
 		y->left = n;
-	else
+		return n;
+	}
+	else{
 		y->right = n;
+		return n;
+	}
 }
 
 /*
